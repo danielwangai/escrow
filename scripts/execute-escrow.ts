@@ -32,12 +32,6 @@ function loadKeypair(filePath: string): Keypair {
   return Keypair.fromSecretKey(Uint8Array.from(secret));
 }
 
-function u64LeBufferFromBn(value: BN): Buffer {
-  const buf = Buffer.alloc(8);
-  buf.writeBigUInt64LE(BigInt(value.toString()));
-  return buf;
-}
-
 async function makeOffer(): Promise<string> {
   // Build makeOffer instruction via raw encoder
   const data = Buffer.from(
@@ -165,7 +159,7 @@ if (!mintAPublicKeyStr) {
 const tokenMintA = new PublicKey(mintAPublicKeyStr);
 const tokenMintB = NATIVE_MINT;
 
-const offerId = new BN(10_26_433); // any unique u64 id
+const offerId = new BN(10_26_434); // any unique u64 id
 const tokenAOfferedAmount = new BN(50_000); // Token A offered by the maker
 const tokenBWantedAmount = new BN(100_000_000); //Token B wanted by the maker
 
